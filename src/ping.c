@@ -6,6 +6,8 @@
 #include <time.h>
 #include "status.h"
 
+#define IP_MAX_LENGTH 15
+
 void stat(int sig) {
         if (sig == SIGINT) {
                 display_total();
@@ -14,9 +16,9 @@ void stat(int sig) {
         return;
 }
 
-int main(int argc, char* argv) {
-        char addr[15];
-        memset(&addr, 0, 15);
+int main(int argc, char** argv) {
+        char addr[IP_MAX_LENGTH];
+        memset(addr, 0, IP_MAX_LENGTH);
         if (argc < 1) 
                 handle_error("host ip required");
         else 
@@ -45,6 +47,7 @@ int main(int argc, char* argv) {
                 u_char *ttl_ptr = buffer + 64;
 
                 display_info(addr, i, *ttl_ptr, snd_time);
+                sleep(2);
         }
         return 0;
 }
