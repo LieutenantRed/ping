@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
                 memset(buffer, 0, BUFFER_SIZE);
                 
                 if (rcv_ping(ping, addr, buffer) != 0)
-                        handle_error("no answer");
+                        continue;
                 
                 u_char *ttl_ptr = buffer + 64;
 
